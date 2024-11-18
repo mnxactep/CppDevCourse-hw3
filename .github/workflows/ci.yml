@@ -13,7 +13,9 @@ jobs:
     - name: Install conan
       run: pip install conan
     - name: Install GoogleTest
-      run: conan install . --build=missing
+      run: |
+        conan profile detect --force
+        conan install . --build=missing
     - name: Build
       run: |
         cmake --preset build/Release -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
