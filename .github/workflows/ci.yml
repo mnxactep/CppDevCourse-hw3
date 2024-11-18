@@ -15,7 +15,7 @@ jobs:
     - name: Install GoogleTest
       run: |
         conan profile detect --force
-        conan install . --build=missing -pr:h conan/gcc
+      conan install . --build=missing -pr:a conan/gcc
     - name: Build
       run: |
         cmake --preset conan-release -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
