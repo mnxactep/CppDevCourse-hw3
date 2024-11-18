@@ -1,7 +1,6 @@
 cmake_minimum_required(VERSION 3.15)
 project(hw-3 CXX)
 enable_testing()
-set(CMAKE_CXX_STANDARD 20)
 
 # Global settings
 set(SRC_DIR "${PROJECT_SOURCE_DIR}/src")
