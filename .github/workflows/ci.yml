@@ -1,0 +1,35 @@
+name: Test
+
+on:
+  pull_request:
+    types: [opened, reopened, synchronize]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Install conan
+      run: pip install conan
+    - name: Install GoogleTest
+      run: conan install . --build=missing
+    - name: Build
+      run: |
+        cmake --preset build/Release -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
+        cmake --build build/Release -j $(nproc)
+    - name: Test
+      run: ctest --test-dir build/Release --output-on-failure
+    - name: Install Cppcheck
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y cppcheck
+    - name: Cppcheck
+      run: cppcheck \
+        --project=./build/Release/compile_commands.json \
+        --enable=all \
+        --template=gcc \
+        --file-filter="src/*.cpp" \
+        --suppress=checkersReport \
+        --suppress=missingIncludeSystem \
+        --error-exitcode=1
