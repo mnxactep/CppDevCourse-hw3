@@ -27,11 +27,12 @@ jobs:
         sudo apt-get update
         sudo apt-get install -y cppcheck
     - name: Cppcheck
-      run: cppcheck \
-        --project=./build/Release/compile_commands.json \
-        --enable=all \
-        --template=gcc \
-        --file-filter="src/*.cpp" \
-        --suppress=checkersReport \
-        --suppress=missingIncludeSystem \
-        --error-exitcode=1
+      run: |
+        cppcheck \
+          --project=./build/Release/compile_commands.json \
+          --enable=all \
+          --template=gcc \
+          --file-filter="src/*.cpp" \
+          --suppress=checkersReport \
+          --suppress=missingIncludeSystem \
+          --error-exitcode=1
