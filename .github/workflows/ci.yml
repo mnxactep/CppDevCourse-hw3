@@ -6,7 +6,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
 
     steps:
     - uses: actions/checkout@v3
@@ -15,7 +15,7 @@ jobs:
     - name: Install GoogleTest
       run: |
         conan profile detect --force
-        conan install . --build=missing -pr:a conan/gcc
+        conan install . --build=missing
     - name: Build
       run: |
         cmake --preset conan-release -DCMAKE_EXPORT_COMPILE_COMMANDS=ON

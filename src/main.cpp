@@ -4,7 +4,6 @@
 #include <string>
 #include <system_error>
 #include <stdexcept>
-#include <format>
 
 #include "two-sum.hpp"
 
@@ -14,7 +13,9 @@ int read_integer() {
     int num {};
     const auto [ptr, ec] = std::from_chars(input.data(), input.data() + input.size(), num);
     if (ec != std::errc()) {
-        throw std::invalid_argument(std::format("\"{}\" is not a valid number\n", input));
+        std::string message;
+        message += '"' + input + "\" is not a valid number";
+        throw std::invalid_argument(message);
     }
     return num;
 }
@@ -33,16 +34,12 @@ int main() {
         std::size_t index0 {};
         std::size_t index1 {};
         if (two_sum(nums, target, index0, index1)) {
-            std::cout << std::format(
-                "nums[{}] + nums[{}] == {}\n",
-                index0, index1, target
-            );
+            std::cout << "nums[" << index0 << "] + nums[" << index1
+                << "] == " << target <<"\n";
         }
         else {
-            std::cout << std::format(
-                "No indices i and j, such as nums[i] + nums[j] == {} were found\n",
-                target
-            );
+            std::cout << "No indices i and j, such as nums[i] + nums[j] == "
+                << target << " were found\n";
         }
     }
     catch (const std::exception& err) {
