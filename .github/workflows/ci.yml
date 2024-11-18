@@ -18,7 +18,7 @@ jobs:
         conan install . --build=missing
     - name: Build
       run: |
-        cmake --preset build/Release -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
+        cmake --preset conan-release -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
         cmake --build build/Release -j $(nproc)
     - name: Test
       run: ctest --test-dir build/Release --output-on-failure
