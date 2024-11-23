@@ -38,3 +38,17 @@ TEST_F(TwoSumsTest, MultiplePairs) {
         || (index0 == 2 && index1 == 3)
     );
 }
+
+TEST_F(TwoSumsTest, MultiplePairsSameElement) {
+    const int nums[ARRAY_SIZE] = {1, 4, 3, 3, 6};
+    ASSERT_TRUE(two_sum(nums, 6, index0, index1));
+    ASSERT_EQ(index0, 2);
+    ASSERT_EQ(index1, 3);
+}
+
+TEST_F(TwoSumsTest, LastElement) {
+    const int nums[ARRAY_SIZE] = {1, 4, 3, 2, 5};
+    ASSERT_TRUE(two_sum(nums, 8, index0, index1));
+    ASSERT_EQ(index0, 2);
+    ASSERT_EQ(index1, 4);
+}
