@@ -1,0 +1,1 @@
+. "/home/mnxactep/CppDevCourse-hw3/build/Release/generators/conanrunenv-release-x86_64.sh"
